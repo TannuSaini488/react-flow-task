@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+Readme - React Flow Task
+React Flow Task — README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Intuitive React Flow-based canvas where users drag blocks from a right-side panel into a central canvas, only allow valid connections (Block A → Block B), and right-clicking any dropped block shows a "Hello World" context menu.
 
-## Available Scripts
+📦 Installation steps
 
-In the project directory, you can run:
+1. Ensure Node.js (v16+) and npm are installed.
 
-### `npm start`
+2. Create app scaffold (or use existing):
+       npx create-react-app reactflow-task
+       cd reactflow-task
+   
+3. Install dependencies:
+       npm install reactflow
+4. Replace src/ files with the provided implementation (or copy the single-file example).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+▶️ How to run the app (development)
+       # from project root
+       npm start
 
-### `npm test`
+The dev server will start on http://localhost:3000 by default.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Drag blocks from the palette into the canvas, connect nodes, and right-click a node to view the context menu.
 
-### `npm run build`
+🧾 Summary of the solution
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The solution is a small React application using React Flow for the canvas. A static JSON simulates fetching available blocks (Block A, Block B) which are rendered in the palette. Users drag palette items into the central canvas; dropped nodes are created with metadata (data.blockType). Connections are validated in onConnect so that only Block A → Block B edges are allowed. Right-clicking a node opens a custom context menu that displays Hello World and provides a convenience action (e.g., remove node).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🧭 Notes on design decisions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+React Flow chosen for robust canvas, node/edge lifecycle, and coordinate projection utilities.
+Static JSON simulates an API—keeps the example simple and deterministic for evaluation.
+Connection validation is implemented in onConnect (server-side style validation would be added for production). Invalid attempts are ignored and user is notified.
+Context menu implemented with onNodeContextMenu and a fixed-positioned HTML element so styling and behaviour are fully controllable.
+Project structure is modular (separate components: App, Sidebar, FlowCanvas, styles.css) to keep code readable and maintainable.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+✅ Code quality & best practices followed
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Functional components + React Hooks only.
+Controlled React Flow state (nodes, edges) using onNodesChange / onEdgesChange helpers.
+Small, single-responsibility components to ease testing and re-use.
+Clear naming, compact styles, and comments around non-trivial logic (drop coordinate conversion, connection validation).
+Minimal external dependencies (only reactflow) to reduce complexit
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+📁 Suggested file structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+src/
+├─ App.jsx
+├─ FlowCanvas.jsx
+├─ Sidebar.jsx
+├─ styles.css
+└─ index.js
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
